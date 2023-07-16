@@ -1,0 +1,52 @@
+{% extends 'home.html' %}
+
+{% block title %}
+    <title>CRUD | Update Record</title>
+{% endblock title %}
+
+
+{% block main %}
+    <div class="container">
+        <h2 class="my-5 bg-secondary text-light py-2 rounded text-center">Update Record</h2>
+
+        <div>
+            <form action="" method="post">
+                {% csrf_token %}
+                                  
+                <div class="row p-1">
+                    <div class="col-md-6 mb-2">
+                        <input type="text" name="name" placeholder="Enter Name" value="{{info.name}}" required class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="email" name="email" value="{{info.email}}" placeholder="Enter Email" required class="form-control">
+                    </div>
+                </div>
+                <div class="row p-1">
+                    <div class="col-md-6 mb-2">
+                        <input type="text" name="mobile" value="{{info.mobile}}" placeholder="Mobile Number" required class="form-control">
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <input type="text" name="city" value="{{info.city}}" placeholder="City Name" class="form-control">
+                    </div>
+                </div>
+                <div class="row p-1">                    
+                    <div class="col-md-6">
+                        <input type="text" name="state" value="{{info.state}}" placeholder="State Name" class="form-control">
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <input type="text" name="pincode" value="{{info.pincode}}" placeholder="Pincode" class="form-control">
+                    </div>
+                </div>
+                <div class="row p-1">
+                    <div class="col-md-6 mb-2">
+                        <input type="reset" class="btn btn-danger px-md-5">
+                        <input type="submit" class="btn btn-success px-md-5">
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock main %}
+    
+    

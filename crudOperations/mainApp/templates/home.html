@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {% block title %}
+    <title>CRUD | Home</title>
+    {% endblock title %}
+        
+</head>
+<body>
+      
+      {% block navbar %}
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg bg-secondary px-md-4 py-3 sticky-top">
+        <div class="container-fluid">
+          <a class="navbar-brand text-light pe-md-5" href="/">CRUD</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active text-light" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active text-light" aria-current="page" href="/add/">Add Records</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search" action="/search/" method="post">
+              {% csrf_token %}
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+              <button class="btn btn-outline-light" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      {% endblock navbar %}
+
+      
+      {% block main %}        
+      <div class="container p-2 pb-5">
+        <h3 class="p-2 text-center bg-secondary text-light my-3 rounded">CRUD Operations</h3>
+
+        <div class="table-responsive rounded">
+            <table class="table table-bordered table-hover table-striped">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Pincode</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                
+                {% for item in data %}
+                <tr>
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.mobile}}</td>
+                    
+                    <td>{{item.city}}</td>
+                    <td>{{item.state}}</td>
+                    <td>{{item.pincode}}</td>
+                    <td><a href="/update/{{item.id}}"><i class="fa-solid fa-pen" title="Edit Record"></i></a></td>
+                    <td><a href="/delete/{{item.id}}"><i class="fa-solid fa-trash" title="Delete Record"></i></a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+      </div>
+      {% endblock main %}
+    
+      
+      {% block footer %}
+      <footer class="bg-secondary fixed-bottom">
+        <p class="text-light text-center p-2">Copyright &copy; CRUD | All rights reserved 2023</p>
+      </footer>
+      {% endblock footer %}
+        
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>
